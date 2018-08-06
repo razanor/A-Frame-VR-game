@@ -1,6 +1,6 @@
 <?php
 require_once ("db.php");
-$sql = "SELECT name, score FROM users ORDER BY score DESC";
+$sql = "SELECT distinct name, score FROM users ORDER BY score DESC";
  $result = $conn->prepare($sql);
  $result->execute();
  $data = $result->fetchAll();
