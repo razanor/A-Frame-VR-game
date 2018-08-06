@@ -1,0 +1,25 @@
+body {
+	background-image: url("https://img.gs/bbdkhfbzkk/2048x2048,stretch/http://i.imgur.com/WqlqEkq.jpg");
+}
+#leaderboard {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#leaderboard td, #leaderboard th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#leaderboard tr {
+	background-color: white;
+	font-weight: bold;
+}
+#leaderboard th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+}
