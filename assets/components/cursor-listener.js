@@ -34,13 +34,16 @@ function game_over() {
 function check_cubes() {
     var cubes = document.getElementsByTagName('a-box');
     var num = cubes[0].getAttribute('game-manager');
-    console.log(num);
      for (var i = 0; i < num.numberEnemies - count; i++) {
         var position = cubes[i].getAttribute('position');
         if (under_line(position)) {
             loseFlag++;
+            cubes[i].removeAttribute('position');
         }
+
+
     }
+    console.log(loseFlag);
     if (loseFlag >= 3) {
         count--;
         game_over();
