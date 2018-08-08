@@ -49,10 +49,12 @@ var GameManagerUtils = {
         var positionStr = position.x.toString() + ' ' + position.y.toString() + ' ' + position.z.toString();
         newEnemy.setAttribute('position', position);
         var destinationStr = '0 ' + position.y.toString() + ' 0';
+        var timer = GameManagerUtils.generateRandomNumber(4000, 10000);
         newEnemy.setAttribute('animation', { 'property': 'position',
                                         'to': destinationStr,
                                         'autoplay': true,
                                         dur: GameManagerUtils.generateRandomNumber(4000, 10000)});
+
         return newEnemy;
     }
 };
