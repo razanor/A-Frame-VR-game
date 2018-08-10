@@ -27,6 +27,9 @@
         <img id="skyTexture" src="https://cdn.aframe.io/a-painter/images/sky.jpg" crossorigin="anonymous">
     </a-assets>
     <a-box game-manager="numberEnemies: 10"></a-box>
+    <a-plane start widht="1" height="1" position="0.266 4.078 -6.856" material="opacity: 0.0">
+    <a-text id="start" value="Start" position="-0.937 0 0" color="#e01a0f" width="20"></a-text>
+    </a-plane>
     <a-camera>
       <a-entity id="weapon" cursor="downEvents: triggerdown; upEvents: triggerUp" 
                 geometry="primitive: ring; radiusInner: 0.01; radiusOuter: 0.03"

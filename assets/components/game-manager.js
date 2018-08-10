@@ -1,3 +1,5 @@
+var newEnemies = [];
+
 AFRAME.registerComponent('game-manager', {
     schema: {
         numberEnemies: { type: 'int' }
@@ -5,16 +7,28 @@ AFRAME.registerComponent('game-manager', {
     init: function () {
         var numEnemies = this.data['numberEnemies'];
         var sceneEl = document.querySelector('a-scene');
-        var newEnemies = [];
         for (var i = 0; i < numEnemies; i++) {
             newEnemies.push(GameManagerUtils.createEnemy());
-        }
-        sceneEl.addEventListener('loaded', function () {
-            newEnemies.forEach(function (enemy) {
-                sceneEl.appendChild(enemy);
-            });
-        });
+        }       
+        // sceneEl.addEventListener('loaded', function () {
+        //     newEnemies.forEach(function (enemy) {
+        //         sceneEl.appendChild(enemy);
+        //     });
+        // });
     }
+});
+
+AFRAME.registerComponent('start', {
+    init: function() {
+        var sceneEl = document.querySelector('a-scene');
+        var el = this.el;
+        el.addEventListener('mouseenter', function () {
+            newEnemies.forEach(function (enemy) {
+            sceneEl.appendChild(enemy);
+        });
+        el.parentNode.removeChild(el);
+    })
+}
 });
 
 var GameManagerUtils = {
@@ -33,13 +47,14 @@ var GameManagerUtils = {
 
     chooseRandomPosition: function () {
         var xPos = GameManagerUtils.generateRandomNumber(-20, 100);
-        var yPos = 1.6;
+        var yPos = GameManagerUtils.generateRandomNumber(1.6, 4);
         var zPos = GameManagerUtils.generateRandomNumber(-5, -16);
         return { 'x': xPos, 'y': yPos, 'z': zPos};
     },
     // Create a new enemy entity.
     createEnemy: function () {
         console.log('createEnemy');
+        var yToStart = 1.6;
         var newEnemy = document.createElement('a-box');
         newEnemy.setAttribute('color', GameManagerUtils.generateRandomColor());
         newEnemy.setAttribute('width', '0.6');
@@ -48,8 +63,7 @@ var GameManagerUtils = {
         var position = GameManagerUtils.chooseRandomPosition();
         var positionStr = position.x.toString() + ' ' + position.y.toString() + ' ' + position.z.toString();
         newEnemy.setAttribute('position', position);
-        var destinationStr = '0 ' + position.y.toString() + ' 0';
-        var timer = GameManagerUtils.generateRandomNumber(4000, 10000);
+        var destinationStr = '0 ' + yToStart.toString() + ' 0';
         newEnemy.setAttribute('animation', { 'property': 'position',
                                         'to': destinationStr,
                                         'autoplay': true,
